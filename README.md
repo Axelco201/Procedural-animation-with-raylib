@@ -1,3 +1,3 @@
 Procédural animation with Jaylib on java
 
-jaylib link : later
+jaylib link : https://github.com/electronstudio/jaylib/tree/master
