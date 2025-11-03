@@ -21,59 +21,81 @@ class Point {
 
 public class Main {
 	public static void link(Point pointA, Point pointB, int lenth) {
-		DrawLine(pointA.x, pointA.y, pointB.x, pointB.y, BLACK);
 		
-		if((int)Math.sqrt((pointA.x - pointB.x) * (pointA.x - pointB.x) + (pointA.y - pointB.y) * (pointA.y - pointB.y)) > lenth + 10) {
-			if (pointA.x > pointB.x) {
-				pointA.speed(-(float)(Math.sqrt((pointA.x - pointB.x) * (pointA.x - pointB.x) + (pointA.y - pointB.y) * (pointA.y - pointB.y)) - lenth)/15, 0);
-				pointB.speed((float)(Math.sqrt((pointA.x - pointB.x) * (pointA.x - pointB.x) + (pointA.y - pointB.y) * (pointA.y - pointB.y)) - lenth)/15, 0);
+		int deltaX;
+		int deltaY;
+		
+		if(pointA.x > pointB.x){
+			deltaX = pointA.x - pointB.x;
+		}
+		else {
+			deltaX = pointB.x - pointA.x;
+		}
+		if(pointA.y > pointB.y) {
+			deltaY = pointA.y - pointB.y;
+		}
+		else {
+			deltaY = pointB.y - pointA.y;
+		}
+		
+		if(Math.sqrt(deltaX * deltaX + deltaY * deltaY) > lenth) {
+			if(pointA.x > pointB.x) {
+				pointA.speed(-(float)((deltaX - Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/1.5f), 0);
+				pointB.speed((float)((deltaX - Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/1.5f), 0);
 			}
 			else {
-				pointA.speed((float)(Math.sqrt((pointB.x - pointA.x) * (pointB.x - pointA.x) + (pointB.y - pointA.y) * (pointB.y - pointA.y)) - lenth)/15, 0);
-				pointB.speed(-(float)(Math.sqrt((pointB.x - pointA.x) * (pointB.x - pointA.x) + (pointB.y - pointA.y) * (pointB.y - pointA.y)) - lenth)/15, 0);
+				pointA.speed((float)((deltaX - Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/1.5f), 0);
+				pointB.speed(-(float)((deltaX - Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/1.5f), 0);
 			}
 			if(pointA.y > pointB.y) {
-				pointA.speed(0,-(float)(Math.sqrt((pointA.x - pointB.x) * (pointA.x - pointB.x) + (pointA.y - pointB.y) * (pointA.y - pointB.y)) - lenth)/15);
-				pointB.speed(0,(float)(Math.sqrt((pointA.x - pointB.x) * (pointA.x - pointB.x) + (pointA.y - pointB.y) * (pointA.y - pointB.y)) - lenth)/15);
+				pointA.speed(0,-(float)((deltaY - Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/1.5f));
+				pointB.speed(0,(float)((deltaY - Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/1.5f));
 			}
 			else {
-				pointA.speed(0,(float)(Math.sqrt((pointB.x - pointA.x) * (pointB.x - pointA.x) + (pointB.y - pointA.y) * (pointB.y - pointA.y)) - lenth)/15);
-				pointB.speed(0,-(float)(Math.sqrt((pointB.x - pointA.x) * (pointB.x - pointA.x) + (pointB.y - pointA.y) * (pointB.y - pointA.y)) - lenth)/15);
+				pointA.speed(0,(float)((deltaY - Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/1.5f));
+				pointB.speed(0,-(float)((deltaY - Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/1.5f));
 			}
+			
 		}
-		else if((int)Math.sqrt((pointA.x - pointB.x) * (pointA.x - pointB.x) + (pointA.y - pointB.y) * (pointA.y - pointB.y)) < lenth - 10) {
-			if (pointA.x > pointB.x) {
-				pointA.speed((float)(Math.sqrt((pointA.x - pointB.x) * (pointA.x - pointB.x) + (pointA.y - pointB.y) * (pointA.y - pointB.y)) - lenth)/15, 0);
-				pointB.speed(-(float)(Math.sqrt((pointA.x - pointB.x) * (pointA.x - pointB.x) + (pointA.y - pointB.y) * (pointA.y - pointB.y)) - lenth)/15, 0);
+		else if(Math.sqrt(deltaX * deltaX + deltaY * deltaY) < lenth) {
+			if(pointA.x > pointB.x) {
+				pointA.speed((float)(((Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaX)/1.5f), 0);
+				pointB.speed(-(float)(((Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaX)/1.5f), 0);
 			}
 			else {
-				pointA.speed(-(float)(Math.sqrt((pointB.x - pointA.x) * (pointB.x - pointA.x) + (pointB.y - pointA.y) * (pointB.y - pointA.y)) - lenth)/15, 0);
-				pointB.speed((float)(Math.sqrt((pointB.x - pointA.x) * (pointB.x - pointA.x) + (pointB.y - pointA.y) * (pointB.y - pointA.y)) - lenth)/15, 0);
+				pointA.speed(-(float)(((Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaX)/1.5f), 0);
+				pointB.speed((float)(((Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaX)/1.5f), 0);
 			}
 			if(pointA.y > pointB.y) {
-				pointA.speed(0,-(float)(Math.sqrt((pointA.x - pointB.x) * (pointA.x - pointB.x) + (pointA.y - pointB.y) * (pointA.y - pointB.y)) - lenth)/15);
-				pointB.speed(0,(float)(Math.sqrt((pointA.x - pointB.x) * (pointA.x - pointB.x) + (pointA.y - pointB.y) * (pointA.y - pointB.y)) - lenth)/15);
+				pointA.speed(0,(float)(((Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaY)/1.5f));
+				pointB.speed(0,-(float)(((Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaY)/1.5f));
 			}
 			else {
-				pointA.speed(0,(float)(Math.sqrt((pointB.x - pointA.x) * (pointB.x - pointA.x) + (pointB.y - pointA.y) * (pointB.y - pointA.y)) - lenth)/15);
-				pointB.speed(0,-(float)(Math.sqrt((pointB.x - pointA.x) * (pointB.x - pointA.x) + (pointB.y - pointA.y) * (pointB.y - pointA.y)) - lenth)/15);
+				pointA.speed(0,-(float)(((Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaY)/2.0f));
+				pointB.speed(0,(float)(((Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaY)/2.0f));
 			}
+			
 		}
+		
+		DrawLine(pointA.x, pointA.y, pointB.x, pointB.y, BLACK);
 	}
 
     public static void main(String args[]) {
     	Point pointA = new Point();
     	pointA.x = 390; pointA.y = 120;
     	Point pointB = new Point();
-    	pointB.x = 500; pointB.y = 370;
+    	pointB.x = 430; pointB.y = 140;
+    	Point pointC = new Point();
+    	pointC.x = 420; pointC.y = 160;
+    	
     	
         InitWindow(1080, 720, "Procedural Animation");
         SetTargetFPS(60);
         
         while (!WindowShouldClose()) {
-        	// update
         	
-        	pointA.speed(5, 0);
+        	// update
+        	pointA.speed(4, 1);
         	pointB.speed(0, 0);
         	
         	// render
@@ -82,13 +104,16 @@ public class Main {
             ClearBackground(RAYWHITE);
             
             pointA.point(pointA.x, pointA.y, RED);
-            System.out.println("x : " + pointA.x + " y : " + pointA.y);
             
             pointB.point(pointB.x, pointB.y, RED);
             
-            link(pointA, pointB, 100);
+            pointC.point(pointC.x, pointC.y, RED);
+            
+            link(pointA, pointB, 40);
+            link(pointC, pointB, 40);
             
             EndDrawing();
+        	
         }
         CloseWindow();
     }
