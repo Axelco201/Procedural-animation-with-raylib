@@ -40,16 +40,16 @@ public class Main {
 		
 		if(Math.sqrt(deltaX * deltaX + deltaY * deltaY) > lenth) {
 			if(pointA.x > pointB.x) {
-				pointA.speed(-(float)((deltaX - Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/1.5f), 0);
-				pointB.speed((float)((deltaX - Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/1.5f), 0);
+				pointA.speed(-(float)((deltaX - Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/2.0f), 0);
+				pointB.speed((float)((deltaX - Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/2.0f), 0);
 			}
 			else {
-				pointA.speed((float)((deltaX - Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/1.5f), 0);
-				pointB.speed(-(float)((deltaX - Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/1.5f), 0);
+				pointA.speed((float)((deltaX - Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/2.0f), 0);
+				pointB.speed(-(float)((deltaX - Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/2.0f), 0);
 			}
 			if(pointA.y > pointB.y) {
-				pointA.speed(0,-(float)((deltaY - Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/1.5f));
-				pointB.speed(0,(float)((deltaY - Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/1.5f));
+				pointA.speed(0,-(float)((deltaY - Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/2.0f));
+				pointB.speed(0,(float)((deltaY - Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/2.0f));
 			}
 			else {
 				pointA.speed(0,(float)((deltaY - Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/1.5f));
@@ -59,16 +59,16 @@ public class Main {
 		}
 		else if(Math.sqrt(deltaX * deltaX + deltaY * deltaY) < lenth) {
 			if(pointA.x > pointB.x) {
-				pointA.speed((float)(((Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaX)/1.5f), 0);
-				pointB.speed(-(float)(((Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaX)/1.5f), 0);
+				pointA.speed((float)(((Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaX)/2.0f), 0);
+				pointB.speed(-(float)(((Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaX)/2.0f), 0);
 			}
 			else {
-				pointA.speed(-(float)(((Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaX)/1.5f), 0);
-				pointB.speed((float)(((Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaX)/1.5f), 0);
+				pointA.speed(-(float)(((Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaX)/2.0f), 0);
+				pointB.speed((float)(((Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaX)/2.0f), 0);
 			}
 			if(pointA.y > pointB.y) {
-				pointA.speed(0,(float)(((Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaY)/1.5f));
-				pointB.speed(0,-(float)(((Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaY)/1.5f));
+				pointA.speed(0,(float)(((Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaY)/2.0f));
+				pointB.speed(0,-(float)(((Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaY)/2.0f));
 			}
 			else {
 				pointA.speed(0,-(float)(((Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaY)/2.0f));
@@ -95,7 +95,7 @@ public class Main {
         while (!WindowShouldClose()) {
         	
         	// update
-        	pointA.speed(4, 1);
+        	pointA.speed(0, 0);
         	pointB.speed(0, 0);
         	
         	// render
