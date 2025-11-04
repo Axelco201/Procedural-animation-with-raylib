@@ -14,8 +14,8 @@ class Point {
 		DrawCircle( x, y, radius, color);
 	}
 	public void speed(float speedX, float speedY) {
-		x += speedX;
-		y += speedY;
+		x += speedX + 0.5;
+		y += speedY + 0.5;
 	}
 }
 
@@ -38,7 +38,7 @@ public class Main {
 			deltaY = pointB.y - pointA.y;
 		}
 		
-		if(Math.sqrt(deltaX * deltaX + deltaY * deltaY) > lenth) {
+		if(Math.sqrt(deltaX * deltaX + deltaY * deltaY) > lenth + 5) {
 			if(pointA.x > pointB.x) {
 				pointA.speed(-(float)((deltaX - Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/2.0f), 0);
 				pointB.speed((float)((deltaX - Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/2.0f), 0);
@@ -52,12 +52,12 @@ public class Main {
 				pointB.speed(0,(float)((deltaY - Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/2.0f));
 			}
 			else {
-				pointA.speed(0,(float)((deltaY - Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/1.5f));
-				pointB.speed(0,-(float)((deltaY - Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/1.5f));
+				pointA.speed(0,(float)((deltaY - Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/2.0f));
+				pointB.speed(0,-(float)((deltaY - Math.sin(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth)/2.0f));
 			}
 			
 		}
-		else if(Math.sqrt(deltaX * deltaX + deltaY * deltaY) < lenth) {
+		else if(Math.sqrt(deltaX * deltaX + deltaY * deltaY) < lenth + 5) {
 			if(pointA.x > pointB.x) {
 				pointA.speed((float)(((Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaX)/2.0f), 0);
 				pointB.speed(-(float)(((Math.cos(Math.acos(deltaX/Math.sqrt(deltaX * deltaX + deltaY * deltaY)))* lenth) - deltaX)/2.0f), 0);
@@ -95,8 +95,7 @@ public class Main {
         while (!WindowShouldClose()) {
         	
         	// update
-        	pointA.speed(0, 0);
-        	pointB.speed(0, 0);
+        	pointA.speed(2, 0);
         	
         	// render
             BeginDrawing();
@@ -111,6 +110,7 @@ public class Main {
             
             link(pointA, pointB, 40);
             link(pointC, pointB, 40);
+            link(pointA, pointC, 40);
             
             EndDrawing();
         	
